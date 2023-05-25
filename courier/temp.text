@@ -1,0 +1,18 @@
+function returningParcels(arg1){
+			console.log("RETURNING");
+			var x = document.getElementById('tables');
+			x.innerHTML = "<table class='table table-dark'><tr><th>PARCEL ID</th><th>SENDER</th><th>RECIEVER</th><th>LOCATION</th><th>DESTINATION</th><th>STARTING LOCATION</th></tr><tr><td><input type='text' id='parcelid' name='parcelid' class='addp'></td><td><input type='text' id='sender' name='sender' class='addp'></td><td><input type='text' id='reciever' name='reciever' class='addp'></></td><td><input type='text' id='location' name='reciever' class='addp'></></td><td><input type='text' id='destination' name='destination' class='addp'></td><td><input type='text' id='starting'name='starting' id class='addp'></td></tr>"
+			x.innerHTML += "<input type='button' value='ADD' onclick='addQuery()' class='btn btn-success'><input type='button' value='Reset' onclick='clearValues()' class='btn btn-danger m-3'>"
+			x.innerHTML += "<div id='confirmation'></div>"
+			returned(arg1);
+		}
+		function returned(arg1){
+			var xHttp = new XMLHttpRequest();
+			xHttp.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					document.getElementById('tables').innerHTML = this.responseText;
+				}
+			}
+			xHttp.open('GET','parcelReturn.php?q='.arg1,true);
+			xHttp.send();
+		}
